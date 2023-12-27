@@ -1,0 +1,57 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+ 
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.custom-shape-divider-bottom-1703416811 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1703416811 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 103px;
+}
+
+.custom-shape-divider-bottom-1703416811 .shape-fill {
+    fill: #FFFFFF;
+}
+.custom-shape-divider-top-1703417326 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1703417326 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 177px;
+}
+
+.custom-shape-divider-top-1703417326 .shape-fill {
+    fill: #FFFFFF;
+}
