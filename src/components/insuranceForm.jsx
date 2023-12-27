@@ -11,7 +11,7 @@ const InsuranceForm = () => {
     const [options,setOptions]=useState([]);
 
     useEffect(()=>{
-        const url = 'http://localhost:4000/getinsurer'; 
+        const url = 'https://first-verbena-galette.glitch.me/getinsurer'; 
         fetch(url)
         .then(response => {
             if (!response.ok) {
