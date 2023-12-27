@@ -57,7 +57,7 @@ const InsuranceForm = () => {
         const nric=document.getElementById("nric").value;
         const mobile=document.getElementById("mobile").value;
 
-        const url = 'http://localhost:4000/quotation';
+        const url = 'https://first-verbena-galette.glitch.me/quotation';
 
         const data = {
             regNo: regno,
