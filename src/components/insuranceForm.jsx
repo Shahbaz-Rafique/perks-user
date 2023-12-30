@@ -185,7 +185,7 @@ const InsuranceForm = () => {
                         </div>
                     </div>
                 </div>
-                <div className=" flex justify-start items-start gap-4 ">
+                <div className=" flex justify-start items-start gap-4 " style={{marginTop:"10px"}}>
                     <input type="checkbox" className="w-6 h-6 bg-[#F9FAFB]" required/>
                     <div className="flex flex-col justify-start items-start gap-2 ">
                         <div>
@@ -196,7 +196,7 @@ const InsuranceForm = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex items-start">
+                <div className="flex items-start" style={{marginTop:"20px"}}>
                 <button
                     type="submit"
                     className={` px-4 py-2 text-sm w-fit flex gap-2 text-slate-50 items-center whitespace-nowrap bg-green-500 rounded-full font-medium self-center`}

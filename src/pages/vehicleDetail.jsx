@@ -103,8 +103,8 @@ const VehicleDetail = () => {
     useEffect(()=>{
         const urlParams = new URLSearchParams(window.location.search);
         const id= urlParams.get("quotationid");
-        const url = 'http://localhost:4000/getQuotations'; 
-        const secondurl = 'http://localhost:4000/getdetails'; 
+        const url = 'https://first-verbena-galette.glitch.me/getQuotations'; 
+        const secondurl = 'https://first-verbena-galette.glitch.me/getdetails'; 
 
         fetch(url)
         .then(response => {
@@ -134,7 +134,7 @@ const VehicleDetail = () => {
         .catch(error => {
             console.error('Error fetching data:', error);
         });
-        const getInsurerurl = 'http://localhost:4000/getinsurer'; 
+        const getInsurerurl = 'https://first-verbena-galette.glitch.me/getinsurer'; 
         fetch(getInsurerurl)
         .then(response => {
             if (!response.ok) {
