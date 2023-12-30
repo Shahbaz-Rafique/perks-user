@@ -1,6 +1,70 @@
-import img from '../assets/benefitPic.svg'
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+
+import b1_img1 from "../assets/banners/b1/SVG/SVG 1.svg"
+import b1_img2 from "../assets/banners/b1/SVG/SVG 2.svg"
+import b1_img3 from "../assets/banners/b1/SVG/SVG 3.svg"
+import b1_img4 from "../assets/banners/b1/SVG/SVG 4.svg"
+import b1_img5 from "../assets/banners/b1/SVG/SVG 5.svg"
+import b1_img6 from "../assets/banners/b1/SVG/SVG 6.svg"
+import b2_img1 from "../assets/banners/b2/SVG/SVG 1.svg"
+import b2_img2 from "../assets/banners/b2/SVG/SVG 2.svg"
+import b2_img3 from "../assets/banners/b2/SVG/SVG 3.svg"
+import b2_img4 from "../assets/banners/b2/SVG/SVG 4.svg"
+import b2_img5 from "../assets/banners/b2/SVG/SVG 5.svg"
+import b2_img6 from "../assets/banners/b2/SVG/SVG 6.svg"
+import b3_img1 from "../assets/banners/b3/SVG/SVG 1.svg"
+import b3_img2 from "../assets/banners/b3/SVG/SVG 2.svg"
+import b3_img3 from "../assets/banners/b3/SVG/SVG 3.svg"
+import b3_img4 from "../assets/banners/b3/SVG/SVG 4.svg"
+import b3_img5 from "../assets/banners/b3/SVG/SVG 5.svg"
+import b3_img6 from "../assets/banners/b3/SVG/SVG 6.svg"
+import b4_img1 from "../assets/banners/b4/SVG/SVG 1.svg"
+import b4_img2 from "../assets/banners/b4/SVG/SVG 2.svg"
+import b4_img3 from "../assets/banners/b4/SVG/SVG 3.svg"
+import b4_img4 from "../assets/banners/b4/SVG/SVG 4.svg"
+import b4_img5 from "../assets/banners/b4/SVG/SVG 5.svg"
+import b4_img6 from "../assets/banners/b4/SVG/SVG 6.svg"
+import b5_img1 from "../assets/banners/b5/SVG/SVG 1.svg"
+import b5_img2 from "../assets/banners/b5/SVG/SVG 2.svg"
+import b5_img3 from "../assets/banners/b5/SVG/SVG 3.svg"
+import b5_img4 from "../assets/banners/b5/SVG/SVG 4.svg"
+import b5_img5 from "../assets/banners/b5/SVG/SVG 5.svg"
+import b5_img6 from "../assets/banners/b5/SVG/SVG 6.svg"
+import Carousel from './carousel';
 const Benefits = () => {
+    const images = [
+        b1_img1,
+        b1_img2,
+        b1_img3,
+        b1_img4,
+        b1_img5,
+        b1_img6,
+        b2_img1,
+        b2_img2,
+        b2_img3,
+        b2_img4,
+        b2_img5,
+        b2_img6,
+        b3_img1,
+        b3_img2,
+        b3_img3,
+        b3_img4,
+        b3_img5,
+        b3_img6,
+        b4_img1,
+        b4_img2,
+        b4_img3,
+        b4_img4,
+        b4_img5,
+        b4_img6,
+        b5_img1,
+        b5_img2,
+        b5_img3,
+        b5_img4,
+        b5_img5,
+        b5_img6,
+
+
+    ]
     return (
         <div className="flex flex-col items-start justify-start gap-64 p-4 bg-gray-50 md:px-16">
             <div className="flex flex-col lg:flex-row w-full items-center gap-8 ">
@@ -29,18 +93,16 @@ const Benefits = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex flex-1 flex-col justify-center items-center gap-8">
-                    <div className="w-full flex justify-between items-center">
-                        <div className="w-8 h-8 bg-orange-200 rounded-full text-orange-500 flex justify-center items-center">
-                        <MdKeyboardArrowLeft size={25} />
-                        </div>
-                        <div className="text-black text-2xl font-inter font-semibold leading-7">Our Benefits</div>
-                        <div className="w-8 h-8 bg-orange-200 rounded-full text-orange-500 flex justify-center items-center">
-                        <MdKeyboardArrowRight size={25} />
-                        </div>
-                    </div>
-                    <img className="w-full h-auto object-cover  rounded-lg " src={img} alt="Image" />
+               
+                <div className="w-full flex-1">
+                    <Carousel  >
+                        {[...images.map((s, i) => (
+                            <img key={i} src={s} className='max-w-full h-auto object-contain aspect-square rounded-lg' />
+                        ))]}
+                    </Carousel>
+
                 </div>
+
             </div>
         </div>
 
