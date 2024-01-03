@@ -12,15 +12,16 @@ const PerksTestimonial = () => {
                 </div>
                 <div className="self-stretch  flex flex-col justify-start items-center gap-8">
                     <div className="md:w-1/2 text-center text-gray-900  font-inter font-semibold leading-6 ">
-                        &ldquo; Perks is just awesome. It contains tons of predesigned components and pages starting from login screen to complex dashboard. Perfect choice for your next Insurance application.&rdquo;
+                        &ldquo; The complimentary 12 month CoPilot protection provided  by Perks is simply awesome. It provides crucial assistance when you need it most – and what’s even better, at no additional cost!
+&rdquo;
                     </div>
                 </div>
                 <div className="self-stretch justify-center items-center gap-2 flex">
                     <img className="w-8 h-8 rounded-full" src={avatar} alt="User Avatar" />
                     <div className="flex justify-start items-center gap-2">
-                        <div className="text-gray-900 text-sm font-inter font-semibold ">Micheal Gough </div>
+                        <div className="text-gray-900 text-sm font-inter font-semibold ">Annie Ng </div>
                         <div className="text-gray-900 text-xs font-inter font-semibold ">/</div>
-                        <div className="text-gray-600 text-xs font-inter font-normal ">CEO at Google</div>
+                        <div className="text-gray-600 text-xs font-inter font-normal ">Housewife</div>
                     </div>
                 </div>
             </div>

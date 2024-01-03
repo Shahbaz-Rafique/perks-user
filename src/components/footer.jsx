@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="w-full h-full md:p-16 p-4 flex flex-col justify-start items-center gap-4 ">
             <img className="w-123.24 h-50" src={logo} alt="Logo" />
             <div className="self-stretch h-159 flex flex-col justify-center items-center gap-8">
-                <div className="w-96 text-center text-[#6B7280] text-sm">Our Gateway to Hassle-Free Motor Insurance and Takaful Renewals</div>
+                <div className="md:w-96 text-center text-[#6B7280] text-sm">Our Gateway to Hassle-Free Motor Insurance and Takaful Renewals</div>
                 <div className="flex items-center">
                     <a
                         href="https://www.facebook.com/perksholdings/"

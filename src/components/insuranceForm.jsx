@@ -106,7 +106,7 @@ const InsuranceForm = () => {
             </div>
 
             <div className="flex flex-col justify-start items-start gap-8 md:max-w-2xl">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}  className="flex flex-col justify-start items-start gap-4 md:max-w-2xl">
                 <div className="self-stretch  flex flex-col justify-start items-start gap-3">
                     <div className="text-white text-lg">Vehicle Details</div>
                     <div className="flex flex-col md:flex-row self-stretch justify-start items-center gap-8 ">
