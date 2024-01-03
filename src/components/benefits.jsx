@@ -1,28 +1,18 @@
 
-import b1_img2 from "../assets/banners/b1/SVG/SVG 2.svg"
 import b1_img5 from "../assets/banners/b1/SVG/SVG 5.svg"
-import b2_img2 from "../assets/banners/b2/SVG/SVG 2.svg"
 import b2_img5 from "../assets/banners/b2/SVG/SVG 5.svg"
-import b3_img2 from "../assets/banners/b3/SVG/SVG 2.svg"
 import b3_img5 from "../assets/banners/b3/SVG/SVG 5.svg"
-import b4_img2 from "../assets/banners/b4/SVG/SVG 2.svg"
 import b4_img5 from "../assets/banners/b4/SVG/SVG 5.svg"
-import b5_img2 from "../assets/banners/b5/SVG/SVG 2.svg"
 import b5_img5 from "../assets/banners/b5/SVG/SVG 5.svg"
 
 import Carousel from './carousel';
 const Benefits = () => {
     const images = [
-       
-        b1_img2,
+        
         b1_img5,
-        b2_img2,
         b2_img5,
-        b3_img2,
         b3_img5,
-        b4_img2,
         b4_img5,
-        b5_img2,
         b5_img5,
 
 
