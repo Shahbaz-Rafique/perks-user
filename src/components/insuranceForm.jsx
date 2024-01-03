@@ -199,9 +199,20 @@ const InsuranceForm = () => {
                 <div className="flex items-start" style={{marginTop:"20px"}}>
                 <button
                     type="submit"
-                    className={` px-4 py-2 text-sm w-fit flex gap-2 text-slate-50 items-center whitespace-nowrap bg-green-500 rounded-full font-medium self-center`}
+                    disabled={submit}
+                    className={` px-4 py-2 text-sm w-fit flex gap-2 text-slate-50 items-center whitespace-nowrap bg-green-500 rounded-full font-medium self-center disabled:cursor-not-allowed bg-opacity-85`}
                     >
-                    Get a Quote <FaArrowRightLong size={18} />
+                    {
+                        submit?
+                        <div className="flex justify-center items-center gap-2 w-[6.1rem] h-5">
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                            
+                        </div>
+                        :
+                        <div className="flex justify-center items-center gap-2">
+                            Get a Quote <FaArrowRightLong size={18} />
+                        </div>
+                    }
                 </button>
                </div>
             </form>

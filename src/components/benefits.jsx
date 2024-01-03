@@ -32,36 +32,17 @@ import b5_img6 from "../assets/banners/b5/SVG/SVG 6.svg"
 import Carousel from './carousel';
 const Benefits = () => {
     const images = [
-        b1_img1,
+       
         b1_img2,
-        b1_img3,
-        b1_img4,
         b1_img5,
-        b1_img6,
-        b2_img1,
         b2_img2,
-        b2_img3,
-        b2_img4,
         b2_img5,
-        b2_img6,
-        b3_img1,
         b3_img2,
-        b3_img3,
-        b3_img4,
         b3_img5,
-        b3_img6,
-        b4_img1,
         b4_img2,
-        b4_img3,
-        b4_img4,
         b4_img5,
-        b4_img6,
-        b5_img1,
         b5_img2,
-        b5_img3,
-        b5_img4,
         b5_img5,
-        b5_img6,
 
 
     ]
@@ -97,7 +78,7 @@ const Benefits = () => {
                 <div className="w-full flex-1">
                     <Carousel  >
                         {[...images.map((s, i) => (
-                            <img key={i} src={s} className='max-w-full h-auto object-contain aspect-square rounded-lg' />
+                            <img key={i} src={s} className='max-w-full h-auto object-cover aspect-square rounded-lg' />
                         ))]}
                     </Carousel>
 
