@@ -93,7 +93,7 @@ const Navbar = () => {
                             </svg>
                         </button>
                     </div>
-                    <NavList device="mobile" />
+                    <NavList device="mobile" handleClose={()=>setOpen(false)} />
                     <button
                         className={`px-4 py-2 text-sm  lg:hidden flex gap-2 text-slate-50 items-center bg-green-500 rounded-lg w-full font-medium self-center`}
                     >

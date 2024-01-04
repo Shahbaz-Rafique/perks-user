@@ -1,7 +1,5 @@
 import { useState } from "react";
-import aig from "../assets/AIG.png"
-import allianz from "../assets/Allianz.png"
-import zurich from "../assets/Zurich.png"
+
 import { PropTypes } from 'prop-types';
 import { useEffect } from "react";
 
@@ -89,9 +87,13 @@ const Card = ({name,alldriver,windscreen,stampduty,addon,sst,bncd}) => {
 }
 
 Card.propTypes = {
-    title: PropTypes.string,
-    img: PropTypes.string
-
+    name: PropTypes.string,
+    alldriver: PropTypes.string,
+    windscreen: PropTypes.string,
+    stampduty: PropTypes.string,
+    addon: PropTypes.string,
+    sst: PropTypes.string,
+    bncd: PropTypes.string
 }
 
 const VehicleDetail = () => {
@@ -115,7 +117,7 @@ const VehicleDetail = () => {
         })
         .then(data => {
             let mydata=data.data.filter((item)=>item.Id==id);
-            insurername=mydata[0].insurer;
+            insurername=mydata[0]?.insurer;
             setData(data.data.filter((item)=>item.Id==id));
         })
         .catch(error => {
@@ -143,7 +145,7 @@ const VehicleDetail = () => {
             return response.json();
         })
         .then(datas => {
-            if(insurername.includes(',')){
+            if(insurername?.includes(',')){
                 const commaIndex =  insurername.indexOf(',');
                 const beforeComma = insurername.substring(0, commaIndex);
                 const afterComma =  insurername.substring(commaIndex + 1);
@@ -159,20 +161,20 @@ const VehicleDetail = () => {
     },[]);
 
 
-    const cards = [
-        {
-            title: "AIG",
-            img: aig
-        },
-        {
-            title:"ALLIANZ",
-            img:allianz
-        },
-        {
-            title:"ZURICH",
-            img:zurich
-        }
-    ]
+    // const cards = [
+    //     {
+    //         title: "AIG",
+    //         img: aig
+    //     },
+    //     {
+    //         title:"ALLIANZ",
+    //         img:allianz
+    //     },
+    //     {
+    //         title:"ZURICH",
+    //         img:zurich
+    //     }
+    // ]
 
     return (
         <section className="mt-20 pt-4 w-full bg-slate-50">
@@ -194,17 +196,17 @@ const VehicleDetail = () => {
                         <div className="grid grid-cols-2 w-full">
                             <span className="font-bold border p-4">Registration Number</span>
                             {data.map((item,index)=>(
-                                <span className="uppercase border p-4">{item.regNo}</span>
+                                <span key={index} className="uppercase border p-4">{item.regNo}</span>
                                 ))}
                             <span className="font-bold border p-4">Cover Period</span>
                             {details.map((item,index)=>(
-                                <span className="border p-4">{new Date(item.coverageStart).toLocaleString()+' - '+new Date(item.coverageEnd).toLocaleString()}</span>
+                                <span key={index}  className="border p-4">{new Date(item.coverageStart).toLocaleString()+' - '+new Date(item.coverageEnd).toLocaleString()}</span>
                             ))}
                         </div>
                     </div>
 
                 {data.map((item,index)=>(
-                    <div className="flex flex-col items-start gap-8 w-full">
+                    <div key={index} className="flex flex-col items-start gap-8 w-full">
                         <div className="flex flex-col gap-2 w-full">
                             <h1 className="text-2xl flex items-center gap-3">Vehicle Owner Details</h1>
                             <span className="w-16 h-[3px] bg-[#0790b2] rounded-lg"></span>
@@ -238,7 +240,7 @@ const VehicleDetail = () => {
                         <span className="w-16 h-[3px] bg-[#0790b2] rounded-lg"></span>
                     </div>
                         {details.map((item,index)=>(
-                            <div className="grid grid-cols-2 w-full">
+                            <div key={index}  className="grid grid-cols-2 w-full">
                                 <span className="font-bold border p-4">6 Months</span>
                                 <span className="uppercase border p-4">RM {item.sixmonths}</span>
                                 <span className="font-bold border p-4">12 Months</span>
@@ -260,5 +262,9 @@ const VehicleDetail = () => {
     )
 }
 
-
+VehicleDetail.propTypes= {
+    title: PropTypes.string,
+    subTitle: PropTypes.string,
+    amount: PropTypes.string
+}
 export default VehicleDetail

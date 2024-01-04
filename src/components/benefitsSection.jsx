@@ -60,7 +60,7 @@ const BenefitsSection = () => {
                 <div className="self-stretch  flex flex-col justify-center items-center gap-4">
                     <div className="self-stretch text-center text-black text-3xl">Perks That Go Beyond: Unveiling CoPilot</div>
 
-                    <div className="flex-1 text-center text-[#6B7280] text-xs ">Learn About Copilot Unique Benefits and Rewards That Come with Choosing Perks for Your Ride</div>
+                    <div className="flex-1 text-center text-[#6B7280] text-xs ">Learn About CoPilot Unique Benefits and Rewards That Come with Choosing Perks for Your Ride</div>
                 </div>
 
             </div>
@@ -91,7 +91,7 @@ const BenefitsSection = () => {
                         )
                     }
                     <div className="flex-1 flex flex-col justify-start items-start gap-4 mt-8">
-                        <div className="self-stretch text-center text-gray-700 font-medium ">terms & conditions apply :</div>
+                        <div className="self-stretch text-center text-gray-700 font-medium ">Terms & conditions apply :</div>
                         <div className="self-stretch text-center text-[#6B7280] text-14 font-Inter font-400">For Malaysian and non-Malaysian residents up to the age of 70 years</div>
                     </div>
                     <div className="flex-1 flex flex-col justify-start items-start gap-4 mt-8">
@@ -106,11 +106,10 @@ const BenefitsSection = () => {
 
             </div>
             <div className="self-stretch p-8 flex flex-col justify-start items-start ">
-                <div className="self-stretch h-140 flex flex-col justify-start items-center gap-4">
-                    <div>
-                        <span className="text-black ">Underwritten by</span>
-                        <span className="text-black "> </span>
-                        <span className="text-black font-bold">Berjaya Sompo Insurance Berhad</span>
+                <div className="self-stretch h-140 flex flex-col justify-center md:justify-start items-center gap-4">
+                    <div className='w-full flex flex-col md:flex-row gap-2 justify-center items-center'>
+                        <span className="text-black whitespace-nowrap">Underwritten by</span>
+                        <span className="text-black font-bold whitespace-nowrap">Berjaya Sompo Insurance Berhad</span>
                     </div>
                     <img className="w-[278px] h-[94px]" src={p7} alt="Berjaya Sompo Insurance Berhad" />
                 </div>

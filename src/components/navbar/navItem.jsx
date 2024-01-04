@@ -1,8 +1,8 @@
 import {PropTypes} from 'prop-types'
 import { Link } from 'react-router-dom'
-const NavItem = ({item,device,scroll}) => {
+const NavItem = ({item,device,scroll,onClose}) => {
     return (
-        <li className={`${device === "mobile" && "p-3 my-2  rounded-lg text-slate-100 hover:bg-primary-color/30 w-full"}`}>
+        <li className={`${device === "mobile" && "p-3 my-2  rounded-lg text-slate-100 hover:bg-primary-color/30 w-full"}`} onClick={onClose}>
             <Link to={item.link}
                
                 className={`text-sm ${scroll === undefined || scroll ? " text-primary-color" : "text-slate-100 "} ${device === "mobile" && "text-slate-100"} font-medium flex `}
@@ -15,7 +15,8 @@ const NavItem = ({item,device,scroll}) => {
 NavItem.propTypes = {
     item: PropTypes.object,
     device: PropTypes.string,
-    scroll: PropTypes.bool
+    scroll: PropTypes.bool,
+    onClose:PropTypes.func
 };
 
 

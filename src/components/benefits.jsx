@@ -28,9 +28,9 @@ const Benefits = () => {
                         <div className="text-black text-3xl 2xl:text-4xl  font-semibold md:w-[25ch] 2xl:w-[28ch] leading-10">Unwrapping the Layers of Our Motor Insurance Philosophy</div>
                     </div>
                     <div className="flex flex-col self-stretch flex-1  h-full justify-start items-start ">
-                        <div className="flex flex-col self-stretch md:flex-row gap-4">
-                            <div className="flex-1 text-gray-600  text-xl 2xl:text-3xl tracking-wide leading-7 2xl:leading-9">Perks is an independent insurance and takaful agency representing renowned insurance and takaful providers in Malaysia. Perks primary focus is motor insurance and motor takaful renewals, with the added option for customers renew their road tax. Perks aspires to provide customers a pleasant and seamless experience for their motor insurance, takaful and road tax renewals.</div>
-                            <div className="flex-1 text-gray-600 text-xl 2xl:text-3xl tracking-wide leading-7 2xl:leading-9">Perks through an exclusive collaboration with AXXESS, enrich vehicle ownership experience, by providing customers customised and valuable insurance and takaful benefits befitting vehicle owners and their vehicles, at no additional cost.</div>
+                        <div className="flex flex-col self-stretch  gap-4">
+                            <div className="flex-1 text-gray-600  md:text-justify 2xl:text-3xl tracking-wide leading-7 2xl:leading-9">Perks is an independent insurance and takaful agency representing renowned insurance and takaful providers in Malaysia. Perks primary focus is motor insurance and motor takaful renewals, with the added option for customers renew their road tax. Perks aspires to provide customers a pleasant and seamless experience for their motor insurance, takaful and road tax renewals.</div>
+                            <div className="flex-1 text-gray-600 md:text-justify 2xl:text-3xl tracking-wide leading-7 2xl:leading-9">Perks through an exclusive collaboration with AXXESS, enrich vehicle ownership experience, by providing customers customised and valuable insurance and takaful benefits befitting vehicle owners and their vehicles, at no additional cost.</div>
                         </div>
                     </div>
                   
