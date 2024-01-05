@@ -5,10 +5,10 @@ import NavItem from './navItem'
 const NavList = ({device,scroll,handleClose}) => {
     const navItems = [
         {heading:"Home",link:"/"},
-        {heading:"About us",link:"#"},
+        {heading:"About us",link:"aboutUs"},
         {heading:"Our Benefits",link:'/benefits'},
-        {heading:"Our Partners",link:'#'},
-        {heading:"Contact Us",link:'#'},
+        {heading:"Our Partners",link:'partners'},
+        {heading:"Contact Us",link:'contactUs'},
 
     ]
     const devices = {

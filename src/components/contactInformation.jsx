@@ -1,9 +1,10 @@
+import { Element } from "react-scroll";
 import c1 from "../assets/c1.svg"
 import c2 from "../assets/c2.svg"
 import c3 from "../assets/c3.svg"
 const ContactInformation = () => {
     return (
-        <div className="w-full h-full md:p-16 p-4 bg-[#D88302] justify-start items-start gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <Element className="w-full h-full md:p-16 p-4 bg-[#D88302] justify-start items-start gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" name="contactUs">
             <div className="flex-1 self-stretch p-4 bg-[rgba(255,255,255,0.10)] rounded-lg overflow-hidden flex flex-col justify-start items-center gap-4">
                 <div className="w-14 h-14 bg-[rgba(255,255,255,0.10)] rounded-full flex justify-center items-center">
                     <img src={c1} className="w-12 h-12" alt="" />
@@ -36,7 +37,7 @@ const ContactInformation = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Element>
     );
 };
 

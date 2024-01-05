@@ -14,7 +14,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+html{
+    scroll-behavior: smooth;
+    
+}
 .custom-shape-divider-bottom-1703416811 {
     position: absolute;
     bottom: 0;
