@@ -4,6 +4,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import NavList from './navList'
 import BtnGetQuote from '../btnGetQuote';
 import { Link } from 'react-scroll';
+import { HashLink } from 'react-router-hash-link';
 const Navbar = () => {
     const [open, setOpen] = useState(false)
     const [navStyle, setNavStyle] = useState("")
@@ -57,14 +58,13 @@ const Navbar = () => {
                             <NavList device="large" scroll={isScroll} />
 
                         </div>
-                        <Link className='hidden cursor-pointer lg:block'
-                            to="getQuote"
-                            smooth={true}
-                            duration={200}
+                        <HashLink className='hidden cursor-pointer lg:block'
+                            to="/#getQuote"
+                            smooth
                             onClick={() => setOpen(false)}
                         >
                             <BtnGetQuote />
-                        </Link>
+                        </HashLink>
 
                     </div>
 
@@ -99,15 +99,12 @@ const Navbar = () => {
                         </button>
                     </div>
                     <NavList device="mobile" handleClose={() => setOpen(false)} />
-                    <Link
-                        to="getQuote"
-                        smooth={true}
-                        duration={200}
+                    <HashLink smooth to="/#getQuote"
                         onClick={() => setOpen(false)}
                         className={`px-4 py-2 cursor-pointer text-sm  lg:hidden flex gap-2 text-slate-50 items-center bg-green-500 rounded-lg w-full font-medium self-center`}
                     >
                         Get a Quote <FaArrowRightLong size={18} />
-                    </Link>
+                    </HashLink>
                 </div>
 
 

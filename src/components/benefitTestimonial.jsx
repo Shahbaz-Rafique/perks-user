@@ -1,8 +1,9 @@
 import BtnGetQuote from "./btnGetQuote"
 import img from "../assets/CoPilot _Flyer.jpg"
+import { HashLink } from 'react-router-hash-link';
 const BenefitTestimonial = () => {
 
-   
+
 
 
     return (
@@ -16,7 +17,9 @@ const BenefitTestimonial = () => {
                         <a href={img} download className="px-4 py-2 rounded-full border border-green-600 overflow-hidden flex justify-center items-center ">
                             <div className="text-white text-base font-semibold leading-6 whitespace-nowrap">Download Flyer</div>
                         </a>
-                        <BtnGetQuote/>
+                        <HashLink smooth to="/#getQuote">
+                            <BtnGetQuote />
+                        </HashLink>
                     </div>
                 </div>
             </div>

@@ -16,12 +16,12 @@ const InsurancePartners = () => {
       <div className="text-black text-xl font-inter font-semibold ">Insurance & Takaful Partners</div>
       <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-5 place-content-center items-center gap-4 w-full justify-items-center">
       <div className="bg-cover bg-top bg-no-repeat w-[150px] h-[100px]" style={{backgroundImage:`url('${z}')`}}></div>
-        <img className="w-[128px] h-[64px]" src={p2} alt="Partner Logo 2" />
-        <img className="w-[64px] h-[64px]" src={p3} alt="Partner Logo 3" />
-        <img className="w-[64px] h-[64px]" src={p4} alt="Partner Logo 4" />
+        <img className="w-[200px] h-auto" src={p2} alt="Partner Logo 2" />
+        <img className="w-[100px] h-auto" src={p3} alt="Partner Logo 3" />
+        <img className="w-[80px] h-auto" src={p4} alt="Partner Logo 4" />
         <div className="bg-cover bg-top bg-no-repeat w-[150px] h-[150px]" style={{backgroundImage:`url('${zt}')`}}></div>
-        <img className="w-[64px] h-[64px]" src={p6} alt="Partner Logo 6" />
-        <img className="w-[190px] h-[70px]" src={p7} alt="Partner Logo 7" />
+        <img className="w-[80px] h-auto" src={p6} alt="Partner Logo 6" />
+        <img className="w-[250px] h-auto" src={p7} alt="Partner Logo 7" />
         <img className="w-[190px] h-[70px]" src={am} alt="Partner Logo 7" />
         <img className="w-[190px] h-[70px]" src={ku} alt="Partner Logo 7" />
         <img className="w-[190px] h-[70px]" src={lb} alt="Partner Logo 7" />

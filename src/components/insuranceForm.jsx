@@ -94,7 +94,7 @@ const InsuranceForm = () => {
     }
 
     return (
-        <Element className="w-full h-full md:p-16 p-4 bg-[#8F3F04] flex flex-col justify-start items-center gap-8" name="getQuote">
+        <Element className="w-full h-full md:p-16 p-4 bg-[#8F3F04] flex flex-col justify-start items-center gap-8" name="getQuote" id="getQuote">
             <ToastContainer />
             <div className="self-stretch h-98 flex flex-col justify-start items-center gap-6">
                 <div className="px-2  bg-white rounded-full border-[#28AA73] border flex justify-center items-center ">
