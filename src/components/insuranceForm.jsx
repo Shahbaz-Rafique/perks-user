@@ -12,20 +12,17 @@ const InsuranceForm = () => {
     const [options,setOptions]=useState([]);
 
     useEffect(()=>{
-        const url = 'https://first-verbena-galette.glitch.me/getinsurer'; 
-        fetch(url)
-        .then(response => {
-            if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            setOptions(data.data.map(({ name }) => ({ value: name, label: name })));
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
+        const options = [
+            { value: 'Liberty Insurance', label: 'Liberty Insurance' },
+            { value: 'Berjaya Sompo', label: 'Berjaya Sompo' },
+            { value: 'Tune Protect', label: 'Tune Protect' },
+            { value: 'AIG', label: 'AIG' },
+            { value: 'Allianz', label: 'Allianz' },
+            { value: 'Takaful Ikhlas', label: 'Takaful Ikhlas' },
+            { value: 'Zurich General Insurance', label: 'Zurich General Insurance' },
+            { value: 'Zurich General Takaful', label: 'Zurich General Takaful' },
+          ];
+        setOptions(options);
     },[])
 
     const handleSelectChange = (selected) => {

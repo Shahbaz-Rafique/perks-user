@@ -1,9 +1,9 @@
 import { useState } from "react";
-
+import { MDBCheckbox } from 'mdb-react-ui-kit';
 import { PropTypes } from 'prop-types';
 import { useEffect } from "react";
 
-const Card = ({name,alldriver,windscreen,stampduty,addon,sst,bncd}) => {
+const Card = ({name,alldriver,windscreen,stampduty,addon,sst,bncd,checked,six,twelve }) => {
     return (
         <div className="border-2 border-[#fda500] w-full">
             <div className="border-b-2 h-44 relative p-6 flex items-center justify-center w-full border-b-[#fda500]">
@@ -42,7 +42,6 @@ const Card = ({name,alldriver,windscreen,stampduty,addon,sst,bncd}) => {
                     </div>
                 </div>
 
-
                 <div className="flex flex-col items-center justify-between w-full gap-2">
                     <h1 className="text-xl font-normal text-gray-500 text-start w-full">Additional Options</h1>
                     <div className="flex items-center justify-between w-full">
@@ -72,9 +71,22 @@ const Card = ({name,alldriver,windscreen,stampduty,addon,sst,bncd}) => {
                     </div>
                     <hr className="w-full h-[1px] my-2  bg-slate-300" />
 
-                    <div className="flex items-center justify-between w-full">
-                        <span className="font-bold ">Total Payable</span>
-                        <span className="">RM 57.70</span>
+                    <div className="items-center justify-between w-full">
+                        <div style={{display:"flex",justifyContent:"space-between"}}>
+                            <span className="font-bold ">Total Insurance Premium</span>
+                            <span className="">RM {checked=="sixMonths"?alldriver+sst+windscreen+addon+sst+bncd+six:checked=="twelveMonths"?alldriver+sst+windscreen+addon+sst+bncd+twelve:alldriver+sst+windscreen+addon+sst+bncd}</span>
+                        </div>
+                        {checked=="sixMonths"?(
+                            <div style={{display:"flex",justifyContent:"space-between"}}>
+                                <span className="font-bold ">Road Tax</span>
+                                <span className="">RM {six}</span>
+                            </div>
+                        ):checked=="twelveMonths"?(
+                            <div style={{display:"flex",justifyContent:"space-between"}}>
+                                <span className="font-bold ">Road Tax</span>
+                                <span className="">RM {twelve}</span>
+                            </div>
+                        ):""}
                     </div>
                 </div>
                 <div className="flex justify-end">
@@ -99,14 +111,21 @@ Card.propTypes = {
 const VehicleDetail = () => {
     const [data,setData]=useState([]);
     const [details,setDetails]=useState([]);
+    const [quotation,setQuotation]=useState([]);
     const [insurer,setInsurer]=useState([]);
-    let insurername="";
+    const [six,setSix]=useState();
+    const [twelve,setTwelve]=useState();
+    const [checkedOption, setCheckedOption] = useState(null);
+
+    const handleCheckboxChange = (option) => {
+        setCheckedOption(option === checkedOption ? null : option);
+    };
 
     useEffect(()=>{
         const urlParams = new URLSearchParams(window.location.search);
         const id= urlParams.get("quotationid");
-        const url = 'https://first-verbena-galette.glitch.me/getQuotations'; 
-        const secondurl = 'https://first-verbena-galette.glitch.me/getdetails'; 
+        const url = 'https://luxuriant-aquamarine-fabrosaurus.glitch.me/getQuotations'; 
+        const secondurl = `https://luxuriant-aquamarine-fabrosaurus.glitch.me/getDetailsComp?id=${id}`; 
 
         fetch(url)
         .then(response => {
@@ -116,8 +135,7 @@ const VehicleDetail = () => {
             return response.json();
         })
         .then(data => {
-            let mydata=data.data.filter((item)=>item.Id==id);
-            insurername=mydata[0]?.insurer;
+            console.log(data.data.filter((item)=>item.Id==id));
             setData(data.data.filter((item)=>item.Id==id));
         })
         .catch(error => {
@@ -136,7 +154,7 @@ const VehicleDetail = () => {
         .catch(error => {
             console.error('Error fetching data:', error);
         });
-        const getInsurerurl = 'https://first-verbena-galette.glitch.me/getinsurer'; 
+        const getInsurerurl = `https://luxuriant-aquamarine-fabrosaurus.glitch.me/getDetailsComp?id=${id}`; 
         fetch(getInsurerurl)
         .then(response => {
             if (!response.ok) {
@@ -145,36 +163,24 @@ const VehicleDetail = () => {
             return response.json();
         })
         .then(datas => {
-            if(insurername?.includes(',')){
-                const commaIndex =  insurername.indexOf(',');
-                const beforeComma = insurername.substring(0, commaIndex);
-                const afterComma =  insurername.substring(commaIndex + 1);
-                setInsurer(datas.data.filter((item)=>item.name==beforeComma || item.name==afterComma));
-            }
-            else{
-                setInsurer(datas.data.filter((item)=>item.name==insurername));
-            }
+            setQuotation(datas.data);
+            setSix(datas.data[0].sixmonths);
+            setTwelve(datas.data[0].twlevemonths);
+            setInsurer(datas.datas);
+            // if(insurername?.includes(',')){
+            //     const commaIndex =  insurername.indexOf(',');
+            //     const beforeComma = insurername.substring(0, commaIndex);
+            //     const afterComma =  insurername.substring(commaIndex + 1);
+            //     setInsurer(datas.data.filter((item)=>item.name==beforeComma || item.name==afterComma));
+            // }
+            // else{
+            //     setInsurer(datas.data.filter((item)=>item.name==insurername));
+            // }
         })
         .catch(error => {
             console.error('Error fetching data:', error);
         });
     },[]);
-
-
-    // const cards = [
-    //     {
-    //         title: "AIG",
-    //         img: aig
-    //     },
-    //     {
-    //         title:"ALLIANZ",
-    //         img:allianz
-    //     },
-    //     {
-    //         title:"ZURICH",
-    //         img:zurich
-    //     }
-    // ]
 
     return (
         <section className="mt-20 pt-4 w-full bg-slate-50">
@@ -241,9 +247,24 @@ const VehicleDetail = () => {
                     </div>
                         {details.map((item,index)=>(
                             <div key={index}  className="grid grid-cols-2 w-full">
-                                <span className="font-bold border p-4">6 Months</span>
+                                 <span className="font-bold border p-4">
+                                    <MDBCheckbox
+                                    id='controlledCheckbox1'
+                                    label="6 Months"
+                                    checked={checkedOption === 'sixMonths'}
+                                    onChange={() => handleCheckboxChange('sixMonths')}
+                                    />
+                                </span>
                                 <span className="uppercase border p-4">RM {item.sixmonths}</span>
-                                <span className="font-bold border p-4">12 Months</span>
+                                <span className="font-bold border p-4">
+                                    <MDBCheckbox
+                                    id='controlledCheckbox2'
+                                    label="12 Months"
+                                    style={{ marginLeft: "3px" }}
+                                    checked={checkedOption === 'twelveMonths'}
+                                    onChange={() => handleCheckboxChange('twelveMonths')}
+                                    />
+                                </span>
                                 <span className="border p-4">RM {item.twlevemonths}</span>
                             </div>
                         ))}
@@ -254,7 +275,7 @@ const VehicleDetail = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full p-8">
                 {
                     insurer.map((item,index) =>
-                        <Card key={index} {...item} />
+                        <Card key={index} {...item} checked={checkedOption} six={six} twelve={twelve}/>
                     )
                 }
             </div>
