@@ -1,11 +1,119 @@
 import { useState } from "react";
-import { MDBCheckbox } from 'mdb-react-ui-kit';
+import { MDBCheckbox,MDBSpinner } from 'mdb-react-ui-kit';
 import { PropTypes } from 'prop-types';
 import { useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Card = ({name,alldriver,windscreen,stampduty,addon,sst,bncd,checked,six,twelve }) => {
+const Card = ({Id,name,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,checked,six,twelve }) => {
+    const [driverCoverageChecked, setDriverCoverageChecked] = useState(false);
+    const [allDriversChecked, setAllDriversChecked] = useState(true);
+    const [addonChecked, setAddonChecked] = useState(false);
+    const [windscreenChecked, setWindscreenChecked] = useState(false);
+
+    const [driver1Name,setDriver1Name]=useState("");
+    const [driver2Name,setDriver2Name]=useState("");
+    const [driver3Name,setDriver3Name]=useState("");
+
+    const [driver1Nric,setDriver1Nric]=useState("");
+    const [driver2Nric,setDriver2Nric]=useState("");
+    const [driver3Nric,setDriver3Nric]=useState("");
+
+    const [submit,setSubmit]=useState(false);
+  
+    const handleDriverCoverageChange = () => {
+      setDriverCoverageChecked(!driverCoverageChecked);
+      setAllDriversChecked(false);
+    };
+  
+    const handleAllDriversChange = () => {
+      setAllDriversChecked(!allDriversChecked);
+      setDriverCoverageChecked(false);
+    };
+  
+    const handleAddonChange = () => {
+      setAddonChecked(!addonChecked);
+    };
+  
+    const handleWindscreenChange = () => {
+      setWindscreenChecked(!windscreenChecked);
+    };
+
+    const total=()=>{
+        let sum=(bncd-((bncd)*((ancd)/100)))+sst+stampduty;
+        if(allDriversChecked){
+            sum+=alldriver;
+        }
+        if(addonChecked){
+            sum+=addon;
+        }
+        if(windscreenChecked){
+            sum+=windscreen;
+        }
+        if (checked === "sixMonths") {
+            sum += six;
+        } 
+        else if (checked === "twelveMonths") {
+            sum += twelve;
+        }
+        return sum.toFixed(2);
+    }
+
+    const handleSubmit=(event)=>{
+        event.preventDefault();
+        setSubmit(true);
+        console.log(Id);
+
+        const url = 'https://wistful-bubble-meter.glitch.me/addDrivers';
+
+        const data = {
+            driver1Name: driver1Name,
+            driver1Nric: driver1Nric,
+            driver2Name: driver2Name,
+            driver2Nric: driver2Nric,
+            driver3Name: driver3Name,
+            driver3Nric: driver3Nric,
+            id:Id,
+        };
+
+        const requestBody = JSON.stringify(data);
+        const headers = {
+        'Content-Type': 'application/json',
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: requestBody,
+        })
+        .then(response => response.json())
+        .then(data => {
+            setSubmit(false);
+            if(data.message=="added"){
+                showToast();
+            }
+        })
+        .catch(error => {
+            setSubmit(false);
+            console.error('Error:', error);
+        });
+    }
+
+    const showToast = () => {
+        toast.success('Driver added sucessfully', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      };
+
+    
     return (
         <div className="border-2 border-[#fda500] w-full">
+            <ToastContainer />
             <div className="border-b-2 h-44 relative p-6 flex items-center justify-center w-full border-b-[#fda500]">
                 <h4 style={{fontWeight:"bold",fontSize:"35px"}}>{name}</h4>
                 <span className="-bottom-3  left-5 absolute w-64 h-5 bg-[#fda500] p-3 py-4 flex items-center text-white">{name}</span>
@@ -18,47 +126,92 @@ const Card = ({name,alldriver,windscreen,stampduty,addon,sst,bncd,checked,six,tw
                         <span className="">RM {bncd}</span>
                     </div>
                     <div className="flex items-center justify-between w-full">
-                        <span className="font-bold ">NCD 55.00%</span>
-                        <span className="">-(RM 55.00)</span>
+                        <span className="font-bold ">NCD {ancd+bncd}%</span>
+                        <span className="">-(RM {(bncd)*((ancd)/100)})</span>
                     </div>
                 </div>
 
                 <div className="flex flex-col items-center justify-between w-full gap-2">
                     <h1 className="text-xl font-normal text-gray-500 text-start w-full">Drivers Coverage</h1>
                     <div className="flex items-center justify-between w-full">
-                        <div className="flex flex-col items-start">
-                            <span className="font-bold flex gap-2">3 Additional Drivers <span className="text-indigo-600">[DRIVERS]</span>
-                            </span>
-                            <input type="radio" name="coverage" />
-                        </div>
-                        <span className="font-bold uppercase">Free</span>
+                    <div className="flex flex-col items-start">
+                        <span className={`font-bold flex gap-2 ${driverCoverageChecked ? 'text-black' : 'text-gray-500'}`}>
+                        3 Additional Drivers
+                        <span className="text-indigo-600">[DRIVERS]</span>
+                        </span>
+                        <input type="checkbox" name="coverage" checked={driverCoverageChecked} onChange={handleDriverCoverageChange} />
+                    </div>
+                    <span className={`font-bold uppercase ${driverCoverageChecked ? 'text-black' : 'text-gray-500'}`}>Free</span>
                     </div>
                     <div className="flex items-center justify-between w-full">
-                        <span className="font-bold flex gap-2">All Drivers
-                            <input type="radio" name="coverage" />
-                        </span>
-
-                        <span className="text-gray-300">RM <br /> {alldriver}</span>
+                        {
+                            driverCoverageChecked?(
+                                <div className="custom-table-container">
+                                    <form onSubmit={handleSubmit}>
+                                        <table>
+                                            <tbody>
+                                                <tr key="1">
+                                                    <td style={{fontSize:"12px"}}>Driver 1</td>
+                                                    <td><input type="text" id="fullname" placeholder="Full Name" style={{border:"1px solid black",width:"130px"}} value={driver1Name} onChange={(e)=>{setDriver1Name(e.target.value)}} required/></td>
+                                                    <td><input type="text" id="nric" placeholder="NRIC/Passport No" style={{border:"1px solid black",width:"130px"}} value={driver1Nric} onChange={(e)=>{setDriver1Nric(e.target.value)}} required/></td>
+                                                </tr>
+                                                <tr key="1">
+                                                    <td style={{fontSize:"12px"}}>Driver 2</td>
+                                                    <td><input type="text" id="fullname" placeholder="Full Name" style={{border:"1px solid black",width:"130px"}} value={driver2Name} onChange={(e)=>{setDriver2Name(e.target.value)}} required/></td>
+                                                    <td><input type="text" id="nric" placeholder="NRIC/Passport No" style={{border:"1px solid black",width:"130px"}} value={driver2Nric} onChange={(e)=>{setDriver2Nric(e.target.value)}} required/></td>
+                                                </tr>
+                                                <tr key="1">
+                                                    <td style={{fontSize:"12px"}}>Driver 3</td>
+                                                    <td><input type="text" id="fullname" placeholder="Full Name" style={{border:"1px solid black",width:"130px"}} value={driver3Name} onChange={(e)=>{setDriver3Name(e.target.value)}} required/></td>
+                                                    <td><input type="text" id="nric" placeholder="NRIC/Passport No" style={{border:"1px solid black",width:"130px"}} value={driver3Nric} onChange={(e)=>{setDriver3Nric(e.target.value)}} required/></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        {
+                                            !submit?(
+                                                <button type="submit" style={{backgroundColor:"#ec6707",color:"white",padding:"10px",marginTop:"5px",width:"100px",borderRadius:"5px",cursor:"pointer"}}>Submit</button>
+                                            ):(
+                                                <button type="submit" style={{backgroundColor:"#ec6707",color:"white",padding:"10px",marginTop:"5px",width:"100px",borderRadius:"5px",cursor:"pointer"}}>Submitting..</button>
+                                            )
+                                        }
+                                    </form>
+                                </div>
+                            ):(
+                                ""
+                            )
+                        }
+                    </div>
+                    <div className="flex items-center justify-between w-full">
+                    <span className={`font-bold flex gap-2 ${allDriversChecked ? 'text-black' : 'text-gray-500'}`}>
+                        All Drivers
+                        <input
+                        type="checkbox"
+                        name="coverage"
+                        checked={allDriversChecked}
+                        onChange={handleAllDriversChange}
+                        />
+                    </span>
+                    <span className={`${allDriversChecked ? 'text-black font-bold' : 'text-gray-300'}`}>RM <br /> {alldriver}</span>
                     </div>
                 </div>
 
                 <div className="flex flex-col items-center justify-between w-full gap-2">
                     <h1 className="text-xl font-normal text-gray-500 text-start w-full">Additional Options</h1>
                     <div className="flex items-center justify-between w-full">
-                        <span className="font-bold flex gap-2">Windscreen
-                            <input type="checkbox" name="coverage" />
-                        </span>
-                        <span className="text-gray-300">BM: {windscreen}</span>
+                    <span className={`font-bold flex gap-2 ${windscreenChecked ? 'text-black' : 'text-gray-500'}`}>
+                        Windscreen
+                        <input type="checkbox" name="coverage" checked={windscreenChecked} onChange={handleWindscreenChange} />
+                    </span>
+                    <span className={` ${windscreenChecked ? 'font-bold' : 'text-gray-300'}`}>BM: {windscreen}</span>
                     </div>
                     <div className="flex items-center justify-between w-full">
-                        <span className="font-bold flex gap-2">Add-on
-                            <input type="checkbox" name="coverage" />
-                        </span>
-
-                        <span className="text-gray-300">RM {addon}</span>
+                    <span className={`font-bold flex gap-2 ${addonChecked ? 'text-black' : 'text-gray-500'}`}>
+                        Add-on
+                        <input type="checkbox" name="coverage" checked={addonChecked} onChange={handleAddonChange} />
+                    </span>
+                    <span className={`${addonChecked ? 'font-bold' : 'text-gray-300'}`}>RM {addon}</span>
                     </div>
                 </div>
-
 
                 <div className="flex flex-col items-center justify-between w-full gap-2">
                     <div className="flex items-center justify-between w-full">
@@ -74,7 +227,7 @@ const Card = ({name,alldriver,windscreen,stampduty,addon,sst,bncd,checked,six,tw
                     <div className="items-center justify-between w-full">
                         <div style={{display:"flex",justifyContent:"space-between"}}>
                             <span className="font-bold ">Total Insurance Premium</span>
-                            <span className="">RM {checked=="sixMonths"?alldriver+sst+windscreen+addon+sst+bncd+six:checked=="twelveMonths"?alldriver+sst+windscreen+addon+sst+bncd+twelve:alldriver+sst+windscreen+addon+sst+bncd}</span>
+                            <span className="">RM {total()}</span>
                         </div>
                         {checked=="sixMonths"?(
                             <div style={{display:"flex",justifyContent:"space-between"}}>
@@ -105,7 +258,8 @@ Card.propTypes = {
     stampduty: PropTypes.string,
     addon: PropTypes.string,
     sst: PropTypes.string,
-    bncd: PropTypes.string
+    bncd: PropTypes.string,
+    ancd:PropTypes.string,
 }
 
 const VehicleDetail = () => {
@@ -219,7 +373,7 @@ const VehicleDetail = () => {
                         </div>
                         <div className="grid grid-cols-2 w-full">
                             <span className="font-bold border p-4">Name</span>
-                            <span className="uppercase border p-4">{item.insurer}</span>
+                            <span className="uppercase border p-4">{item.name}</span>
                             <span className="font-bold border p-4">NRIC/Passport No</span>
                             <span className="border p-4">{item.nric}</span>
                         </div>

@@ -58,3 +58,26 @@ html{
 .custom-shape-divider-top-1703417326 .shape-fill {
     fill: #FFFFFF;
 }
+
+/* CustomTable.css */
+
+.custom-table-container {
+    width: 50%;
+    margin: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  

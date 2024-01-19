@@ -55,7 +55,7 @@ const InsuranceForm = () => {
         const nric=document.getElementById("nric").value;
         const mobile=document.getElementById("mobile").value;
 
-        const url = 'https://first-verbena-galette.glitch.me/quotation';
+        const url = 'https://wistful-bubble-meter.glitch.me/quotation';
 
         const data = {
             regNo: regno,
