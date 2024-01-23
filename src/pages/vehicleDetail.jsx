@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Card = ({Id,name,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,checked,six,twelve }) => {
+const Card = ({Id,name,ncd,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,checked,six,twelve }) => {
     const [driverCoverageChecked, setDriverCoverageChecked] = useState(false);
     const [allDriversChecked, setAllDriversChecked] = useState(true);
     const [addonChecked, setAddonChecked] = useState(false);
@@ -49,12 +49,6 @@ const Card = ({Id,name,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,checke
         }
         if(windscreenChecked){
             sum+=windscreen;
-        }
-        if (checked === "sixMonths") {
-            sum += six;
-        } 
-        else if (checked === "twelveMonths") {
-            sum += twelve;
         }
         return sum.toFixed(2);
     }
@@ -109,6 +103,10 @@ const Card = ({Id,name,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,checke
           draggable: true,
         });
       };
+    
+    function formatNumberWithCommas(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
     
     return (
@@ -123,11 +121,11 @@ const Card = ({Id,name,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,checke
                 <div className="flex flex-col items-center justify-between w-full gap-2">
                     <div className="flex items-center justify-between w-full">
                         <span className="font-bold ">Premium</span>
-                        <span className="">RM {bncd}</span>
+                        <span className="">RM {formatNumberWithCommas(bncd)}.00</span>
                     </div>
                     <div className="flex items-center justify-between w-full">
-                        <span className="font-bold ">NCD {ancd+bncd}%</span>
-                        <span className="">-(RM {(bncd)*((ancd)/100)})</span>
+                        <span className="font-bold ">NCD {ncd}%</span>
+                        <span className="">-(RM {formatNumberWithCommas((bncd)*((ncd)/100))}.00)</span>
                     </div>
                 </div>
 
@@ -191,7 +189,7 @@ const Card = ({Id,name,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,checke
                         onChange={handleAllDriversChange}
                         />
                     </span>
-                    <span className={`${allDriversChecked ? 'text-black font-bold' : 'text-gray-300'}`}>RM <br /> {alldriver}</span>
+                    <span className={`${allDriversChecked ? 'text-black font-bold' : 'text-gray-300'}`}>RM <br /> {formatNumberWithCommas(alldriver)}.00</span>
                     </div>
                 </div>
 
@@ -202,44 +200,48 @@ const Card = ({Id,name,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,checke
                         Windscreen
                         <input type="checkbox" name="coverage" checked={windscreenChecked} onChange={handleWindscreenChange} />
                     </span>
-                    <span className={` ${windscreenChecked ? 'font-bold' : 'text-gray-300'}`}>BM: {windscreen}</span>
+                    <span className={` ${windscreenChecked ? 'font-bold' : 'text-gray-300'}`}>BM: {formatNumberWithCommas(windscreen)}.00</span>
                     </div>
                     <div className="flex items-center justify-between w-full">
                     <span className={`font-bold flex gap-2 ${addonChecked ? 'text-black' : 'text-gray-500'}`}>
                         Add-on
                         <input type="checkbox" name="coverage" checked={addonChecked} onChange={handleAddonChange} />
                     </span>
-                    <span className={`${addonChecked ? 'font-bold' : 'text-gray-300'}`}>RM {addon}</span>
+                    <span className={`${addonChecked ? 'font-bold' : 'text-gray-300'}`}>RM {formatNumberWithCommas(addon)}.00</span>
                     </div>
                 </div>
 
                 <div className="flex flex-col items-center justify-between w-full gap-2">
                     <div className="flex items-center justify-between w-full">
                         <span className="font-bold ">SST</span>
-                        <span className="">RM {sst}</span>
+                        <span className="">RM {formatNumberWithCommas(sst)}.00</span>
                     </div>
                     <div className="flex items-center justify-between w-full">
                         <span className="font-bold ">Stamp Duty</span>
-                        <span className="">RM {stampduty}</span>
+                        <span className="">RM {formatNumberWithCommas(stampduty)}.00</span>
                     </div>
                     <hr className="w-full h-[1px] my-2  bg-slate-300" />
 
                     <div className="items-center justify-between w-full">
                         <div style={{display:"flex",justifyContent:"space-between"}}>
                             <span className="font-bold ">Total Insurance Premium</span>
-                            <span className="">RM {total()}</span>
+                            <span className="">RM {formatNumberWithCommas(total())}</span>
                         </div>
                         {checked=="sixMonths"?(
                             <div style={{display:"flex",justifyContent:"space-between"}}>
                                 <span className="font-bold ">Road Tax</span>
-                                <span className="">RM {six}</span>
+                                <span className="">RM {formatNumberWithCommas(six)}.00</span>
                             </div>
                         ):checked=="twelveMonths"?(
                             <div style={{display:"flex",justifyContent:"space-between"}}>
                                 <span className="font-bold ">Road Tax</span>
-                                <span className="">RM {twelve}</span>
+                                <span className="">RM {formatNumberWithCommas(twelve)}.00</span>
                             </div>
                         ):""}
+                        <div style={{display:"flex",justifyContent:"space-between"}}>
+                            <span className="font-bold ">Total Payable</span>
+                            <span className="">RM {checked=="sixMonths"?formatNumberWithCommas(parseInt(total())+parseInt(six)):checked=="twelveMonths"?formatNumberWithCommas(parseInt(total())+parseInt(twelve)):formatNumberWithCommas(total())}.00</span>
+                        </div>
                     </div>
                 </div>
                 <div className="flex justify-end">
@@ -269,6 +271,7 @@ const VehicleDetail = () => {
     const [insurer,setInsurer]=useState([]);
     const [six,setSix]=useState();
     const [twelve,setTwelve]=useState();
+    const [ncd,setNcd]=useState();
     const [checkedOption, setCheckedOption] = useState(null);
 
     const handleCheckboxChange = (option) => {
@@ -289,7 +292,6 @@ const VehicleDetail = () => {
             return response.json();
         })
         .then(data => {
-            console.log(data.data.filter((item)=>item.Id==id));
             setData(data.data.filter((item)=>item.Id==id));
         })
         .catch(error => {
@@ -303,6 +305,7 @@ const VehicleDetail = () => {
             return response.json();
         })
         .then(data => {
+            setNcd(data.data.filter((item)=>item.quotationId==id)[0].ncd);
             setDetails(data.data.filter((item)=>item.quotationId==id));
         })
         .catch(error => {
@@ -321,15 +324,6 @@ const VehicleDetail = () => {
             setSix(datas.data[0].sixmonths);
             setTwelve(datas.data[0].twlevemonths);
             setInsurer(datas.datas);
-            // if(insurername?.includes(',')){
-            //     const commaIndex =  insurername.indexOf(',');
-            //     const beforeComma = insurername.substring(0, commaIndex);
-            //     const afterComma =  insurername.substring(commaIndex + 1);
-            //     setInsurer(datas.data.filter((item)=>item.name==beforeComma || item.name==afterComma));
-            // }
-            // else{
-            //     setInsurer(datas.data.filter((item)=>item.name==insurername));
-            // }
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -357,7 +351,7 @@ const VehicleDetail = () => {
                             <span className="font-bold border p-4">Registration Number</span>
                             {data.map((item,index)=>(
                                 <span key={index} className="uppercase border p-4">{item.regNo}</span>
-                                ))}
+                            ))}
                             <span className="font-bold border p-4">Cover Period</span>
                             {details.map((item,index)=>(
                                 <span key={index}  className="border p-4">{new Date(item.coverageStart).toLocaleString()+' - '+new Date(item.coverageEnd).toLocaleString()}</span>
@@ -388,7 +382,9 @@ const VehicleDetail = () => {
                     <div className="grid grid-cols-2 w-full h-full">
                         <textarea className="p-2 outline outline-2" placeholder="Full Address" cols="40" rows="2"></textarea>
                         <span className="border p-4">
-                            <span className="outline outline-2 p-4">Postcode</span>
+                            {data.map((item,index)=>(
+                                <span className="outline outline-2 p-4">PostCode: {item.postCode}</span>
+                            ))}
                         </span>
                     </div>
                 </div>
@@ -429,7 +425,7 @@ const VehicleDetail = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full p-8">
                 {
                     insurer.map((item,index) =>
-                        <Card key={index} {...item} checked={checkedOption} six={six} twelve={twelve}/>
+                        <Card key={index} {...item} checked={checkedOption} six={six} twelve={twelve} ncd={ncd}/>
                     )
                 }
             </div>
