@@ -240,7 +240,7 @@ const Card = ({Id,name,ncd,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,ch
                         ):""}
                         <div style={{display:"flex",justifyContent:"space-between"}}>
                             <span className="font-bold ">Total Payable</span>
-                            <span className="">RM {checked=="sixMonths"?formatNumberWithCommas(parseInt(total())+parseInt(six)):checked=="twelveMonths"?formatNumberWithCommas(parseInt(total())+parseInt(twelve)):formatNumberWithCommas(total())}.00</span>
+                            <span className="">RM {checked=="sixMonths"?`${formatNumberWithCommas(parseInt(total())+parseInt(six))}.00`:checked=="twelveMonths"?`${formatNumberWithCommas(parseInt(total())+parseInt(twelve))}.00`:formatNumberWithCommas(total())}</span>
                         </div>
                     </div>
                 </div>
