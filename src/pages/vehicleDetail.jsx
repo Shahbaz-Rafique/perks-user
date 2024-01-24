@@ -40,7 +40,7 @@ const Card = ({Id,name,ncd,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,ch
     };
 
     const total=()=>{
-        let sum=(bncd-((bncd)*((ancd)/100)))+sst+stampduty;
+        let sum=(bncd-((bncd)*((ncd)/100)))+sst+stampduty;
         if(allDriversChecked){
             sum+=alldriver;
         }
