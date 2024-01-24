@@ -23,11 +23,7 @@ const BenefitsSection = () => {
             amount: "RM20,000",
             subTitle:""
         }
-        ,{
-            title: "E-hailing benefit due to named vehicle on Accidental Repair",
-            amount: "RM50/day",
-            subTitle:"* Subject to maximum of 10 days"
-        },
+        ,
         {
             title: "Accidental Hospital Income",
             amount: "RM50/day",
@@ -42,11 +38,6 @@ const BenefitsSection = () => {
             title: "Accidental Medical Reimbursement",
             amount: "RM500",
             subTitle:""
-       },
-       {
-        title: "Irreparable damage to tyres incl. burst tyres, tear and cut",
-        amount: "RM500",
-        subTitle:"* Subject to tyres being less than 12 months old and damage not due to wear & tear"
        }
     ]
 

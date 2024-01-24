@@ -1,22 +1,15 @@
 
 import { Element } from "react-scroll"
-import b1_img5 from "../assets/banners/b1/SVG/SVG 5.svg"
-import b2_img5 from "../assets/banners/b2/SVG/SVG 5.svg"
-import b3_img5 from "../assets/banners/b3/SVG/SVG 5.svg"
+import b1_img5 from "../assets/SVG 4.svg"
+import b2_img5 from "../assets/SVG 2.svg"
 import b4_img5 from "../assets/banners/b4/SVG/SVG 5.svg"
-import b5_img5 from "../assets/banners/b5/SVG/SVG 5.svg"
 
 import Carousel from './carousel';
 const Benefits = () => {
-    const images = [
-        
+    const images = [   
         b1_img5,
         b2_img5,
-        b3_img5,
         b4_img5,
-        b5_img5,
-
-
     ]
     return (
         <Element className="flex flex-col items-start justify-start gap-64 p-4 bg-gray-50 md:px-16" name="aboutUs">
