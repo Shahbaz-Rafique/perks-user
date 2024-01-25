@@ -1,14 +1,20 @@
 
 import { Element } from "react-scroll"
 import b1_img5 from "../assets/SVG 4.svg"
+// import b3_img5 from "../assets/SVG 6.svg"
 import b2_img5 from "../assets/SVG 2.svg"
+// import b1_img5 from "../assets/banners/b1/SVG/SVG 5.svg"
+// import b2_img5 from "../assets/banners/b2/SVG/SVG 5.svg"
+import b3_img5 from "../assets/banners/b3/SVG/SVG 5.svg"
 import b4_img5 from "../assets/banners/b4/SVG/SVG 5.svg"
+// import b5_img5 from "../assets/banners/b5/SVG/SVG 5.svg"
 
 import Carousel from './carousel';
 const Benefits = () => {
     const images = [   
         b1_img5,
         b2_img5,
+        b3_img5,
         b4_img5,
     ]
     return (
@@ -31,12 +37,17 @@ const Benefits = () => {
                 </div>
                
                 <div className="w-full flex-1">
-                    <Carousel  >
-                        {[...images.map((s, i) => (
-                            <img key={i} src={s} className='max-w-full h-auto object-cover aspect-square rounded-lg' />
-                        ))]}
+                    <Carousel>
+                        {images.map((src, index) => (
+                            <img
+                            key={index}
+                            src={src}
+                            alt={`Image ${index + 1}`}
+                            className='w-full h-auto object-cover aspect-square rounded-lg'
+                            style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'cover' }}
+                            />
+                        ))}
                     </Carousel>
-
                 </div>
 
             </div>

@@ -189,7 +189,7 @@ const Card = ({Id,name,ncd,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,ch
                         onChange={handleAllDriversChange}
                         />
                     </span>
-                    <span className={`${allDriversChecked ? 'text-black font-bold' : 'text-gray-300'}`}>RM <br /> {formatNumberWithCommas(alldriver)}.00</span>
+                    <span className={`${allDriversChecked ? 'text-black font-bold' : 'text-gray-300'}`}>RM {formatNumberWithCommas(alldriver)}.00</span>
                     </div>
                 </div>
 
@@ -200,7 +200,7 @@ const Card = ({Id,name,ncd,alldriver,windscreen,stampduty,addon,sst,bncd,ancd,ch
                         Windscreen
                         <input type="checkbox" name="coverage" checked={windscreenChecked} onChange={handleWindscreenChange} />
                     </span>
-                    <span className={` ${windscreenChecked ? 'font-bold' : 'text-gray-300'}`}>BM: {formatNumberWithCommas(windscreen)}.00</span>
+                    <span className={` ${windscreenChecked ? 'font-bold' : 'text-gray-300'}`}>BM {formatNumberWithCommas(windscreen)}.00</span>
                     </div>
                     <div className="flex items-center justify-between w-full">
                     <span className={`font-bold flex gap-2 ${addonChecked ? 'text-black' : 'text-gray-500'}`}>
