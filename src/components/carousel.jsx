@@ -31,14 +31,6 @@ const Carousel = ({ children: slides, autoSlide = false, autoSlideInterval = 300
                 <div className='flex  transition-transform ease-out duration-500' style={{ transform: `translateX(-${curr * 100}%)` }}>
                     {slides}
                 </div>
-               
-                <div className='absolute bottom-4 right-0 left-0'>
-                    <div className='flex items-center justify-center gap-2'>
-                        {slides.map((s, i) => (
-                            <div key={i} className={`transition-all w-1.5 h-1.5 bg-white rounded-full  ${curr === i ? "p-0.5" : "bg-opacity-50"}`} />
-                        ))}
-                    </div>
-                </div>
             </div>
         </div>
 

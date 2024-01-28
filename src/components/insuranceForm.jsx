@@ -69,13 +69,13 @@ const InsuranceForm = () => {
 
         const requestBody = JSON.stringify(data);
         const headers = {
-        'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
         };
 
         fetch(url, {
-        method: 'POST',
-        headers: headers,
-        body: requestBody,
+            method: 'POST',
+            headers: headers,
+            body: requestBody,
         })
         .then(response => response.json())
         .then(data => {
@@ -188,9 +188,9 @@ const InsuranceForm = () => {
                     <div className="flex flex-col justify-start items-start gap-2 ">
                         <div>
                             <span className="text-white  ">By submitting this form, you confirm that you have read and agree to </span>
-                            <span className="text-[#28AA73]  underline ">Perks Terms & Conditions</span>
+                            <a href=""><span className="text-[#28AA73]  underline ">Conditions of Use</span></a>
                             <span className="text-white "> and </span>
-                            <span className="text-[#28AA73] underline ">Privacy Statement</span>
+                            <a href=""><span className="text-[#28AA73] underline ">Privacy Notice</span></a>
                         </div>
                     </div>
                 </div>

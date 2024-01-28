@@ -51,7 +51,7 @@ const BenefitsSection = () => {
                 <div className="self-stretch  flex flex-col justify-center items-center gap-4">
                     <div className="self-stretch text-center text-black text-3xl">Perks That Go Beyond: Unveiling CoPilot</div>
 
-                    <div className="flex-1 text-center text-[#6B7280] text-xs ">Learn About CoPilot Unique Benefits and Rewards That Come with Choosing Perks for Your Ride</div>
+                    <div className="flex-1 text-center text-[#6B7280] text-xs ">Learn About CoPilot's Unique Benefits and Rewards That Come with Choosing Perks for Your Ride</div>
                 </div>
 
             </div>
@@ -83,7 +83,14 @@ const BenefitsSection = () => {
                     }
                     <div className="flex-1 flex flex-col justify-start items-start gap-4 mt-8">
                         <div className="self-stretch text-center text-gray-700 font-medium ">Terms & conditions apply :</div>
-                        <div className="self-stretch text-center text-[#6B7280] text-14 font-Inter font-400">For Malaysian and non-Malaysian residents up to the age of 70 years</div>
+                        <div className="self-stretch text-center text-[#6B7280] text-14 font-Inter font-400">
+                            <span style={{ color:"#6B7280", fontSize:"25px", marginTop:"15px",marginRight:"5px" }}>•</span> 
+                            For Malaysian and non-Malaysian residents up to the age of 70 years
+                        </div>
+                        <div className="self-stretch text-left text-[#6B7280] text-14 font-Inter font-400" style={{ marginTop: '-20px' }}>
+                            <span style={{ color:"#6B7280", fontSize:"25px", marginLeft:"52px",marginRight:"5px" }}>•</span> 
+                            Subject to a motor insurance premium of RM300.00
+                        </div>
                     </div>
                     <div className="flex-1 flex flex-col justify-start items-start gap-4 mt-8">
                         <div className="self-stretch text-center text-gray-700 font-medium">Click the links below for more information :</div>

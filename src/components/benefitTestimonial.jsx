@@ -2,10 +2,6 @@ import BtnGetQuote from "./btnGetQuote"
 import img from "../assets/CoPilot _Flyer.jpg"
 import { HashLink } from 'react-router-hash-link';
 const BenefitTestimonial = () => {
-
-
-
-
     return (
         <div className="w-full h-full md:p-16 p-4 bg-slate-50 flex justify-start items-start ">
             <div className="flex-1 self-stretch p-2 py-8 md:p-12 bg-gradient-to-b from-brown-800 to-orange-500 rounded-lg flex justify-center items-center gap-10">
@@ -24,7 +20,6 @@ const BenefitTestimonial = () => {
                 </div>
             </div>
         </div>
-
     )
 }
 
