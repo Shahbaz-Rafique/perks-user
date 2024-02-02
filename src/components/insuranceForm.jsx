@@ -218,7 +218,7 @@ const InsuranceForm = () => {
                     </div>
                 </div>
                 <ReCAPTCHA
-                    sitekey="6LdogmQpAAAAAMJeRp2_d0hDZRaVXQBORRKCG67I"
+                    sitekey="6LdogmQpAAAAAKmlTOOcytWP3bRhhgJXc8PkOZ-S"
                     onChange={handleRecaptchaChange}
                 />
                 <div className="flex items-start" style={{marginTop:"20px"}}>
