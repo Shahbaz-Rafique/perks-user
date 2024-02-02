@@ -5,11 +5,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Select from 'react-select';
 import { Element } from "react-scroll";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const InsuranceForm = () => {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [submit,setSubmit]=useState(false);
     const [options,setOptions]=useState([]);
+    const [value,setValue]=useState(null);
 
     useEffect(()=>{
         const options = [
@@ -31,6 +33,11 @@ const InsuranceForm = () => {
         }
     };
 
+    const handleRecaptchaChange = (value) => {
+        setValue(value);
+    };
+
+
     const showToast = () => {
         toast.success('Your Quotation application has been submitted', {
           position: 'top-center',
@@ -45,10 +52,25 @@ const InsuranceForm = () => {
         });
       };
 
+    const showToastError = () => {
+        toast.error('Check the reCaptcha', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      };
+
     const handleSubmit=(event)=>{
         event.preventDefault();
         setSubmit(true);
-        const regno=document.getElementById("regno").value;
+        if(value==null || value==""){
+            showToastError();
+        }
+        else{
+            const regno=document.getElementById("regno").value;
         const postcode=document.getElementById("postcode").value;
         const name=document.getElementById("name").value;
         const email=document.getElementById("email").value;
@@ -88,6 +110,7 @@ const InsuranceForm = () => {
             setSubmit(false);
             console.error('Error:', error);
         });
+        }
     }
 
     return (
@@ -194,6 +217,10 @@ const InsuranceForm = () => {
                         </div>
                     </div>
                 </div>
+                <ReCAPTCHA
+                    sitekey="6LexfWQpAAAAAEjHAJMW-GlHFLYIQrtfqGtEn685"
+                    onChange={handleRecaptchaChange}
+                />
                 <div className="flex items-start" style={{marginTop:"20px"}}>
                 <button
                     type="submit"

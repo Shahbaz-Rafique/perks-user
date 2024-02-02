@@ -36,11 +36,11 @@ const Benefits = () => {
                     <Carousel>
                         {images.map((src, index) => (
                             <img
-                            key={index}
-                            src={src}
-                            alt={`Image ${index + 1}`}
-                            className='w-full h-auto object-fit aspect-square rounded-lg'
-                            style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'fit' }}
+                                key={index}
+                                src={src}
+                                alt={`Image ${index + 1}`}
+                                className='w-full h-auto object-fit aspect-square rounded-lg'
+                                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'fit' }}
                             />
                         ))}
                     </Carousel>
