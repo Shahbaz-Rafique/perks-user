@@ -66,10 +66,6 @@ const InsuranceForm = () => {
     const handleSubmit=(event)=>{
         event.preventDefault();
         setSubmit(true);
-        if(value==null || value==""){
-            showToastError();
-        }
-        else{
             const regno=document.getElementById("regno").value;
         const postcode=document.getElementById("postcode").value;
         const name=document.getElementById("name").value;
@@ -110,7 +106,6 @@ const InsuranceForm = () => {
             setSubmit(false);
             console.error('Error:', error);
         });
-        }
     }
 
     return (
@@ -217,10 +212,6 @@ const InsuranceForm = () => {
                         </div>
                     </div>
                 </div>
-                <ReCAPTCHA
-                    sitekey="6Lc6iGQpAAAAALU3wEM_lL-kb0sIyBTyHGQOFKLq"
-                    onChange={handleRecaptchaChange}
-                />
                 <div className="flex items-start" style={{marginTop:"20px"}}>
                 <button
                     type="submit"
